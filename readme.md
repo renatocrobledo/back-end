@@ -1,3 +1,5 @@
 back-end-resources
 
-[Palabras reservada en python](https://recursospython.com/guias-y-manuales/palabras-reservadas-del-lenguaje/)
+[Palabras reservadas en python](https://recursospython.com/guias-y-manuales/palabras-reservadas-del-lenguaje/)
+
+[built-in functions docs](https://www.programiz.com/python-programming/methods/)
