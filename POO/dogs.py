@@ -15,6 +15,9 @@ class Dog:
   def eat(self, type_of_food = 'meat'):
     print(f"{self.name} is eating {type_of_food}, and its weight is {self.weight}")
 
+  def my_weight(self):
+    return f"I'm {self.name} and my weight is: {self.weight}"
+
 dogs_desription = [ {
                       'size': '30 cm',
                       'name': 'Firulais',
@@ -46,7 +49,10 @@ for description in dogs_desription:
     new_dog = Dog(**description)
     my_dog_list.append(new_dog)
 
-print(my_dog_list)
+print("================================")
+
+for dog in my_dog_list:
+  print(dog.my_weight())
 
 '''
 first_dog = Dog(**dog_desription)
