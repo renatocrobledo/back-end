@@ -1,3 +1,4 @@
+import dogs_description
 
 class Dog:
   def __init__(self, name, breed, color, size, weight):
@@ -18,34 +19,9 @@ class Dog:
   def my_weight(self):
     return f"I'm {self.name} and my weight is: {self.weight}"
 
-dogs_desription = [ {
-                      'size': '30 cm',
-                      'name': 'Firulais',
-                      'color': 'white',
-                      'breed': 'Schnutzer',
-                      'weight': '3 kg'
-                    },{
-                      'size': '15 cm',
-                      'name': 'Ñoño',
-                      'color': 'gray',
-                      'breed': 'Schnutzer',
-                      'weight': '10 kg'
-                    },{
-                      'size': '5 cm',
-                      'name': 'Arnulfo',
-                      'color': 'white',
-                      'breed': 'Chihuahua',
-                      'weight': '300 gr'
-                    },{
-                      'size': '28 cm',
-                      'name': 'Tronchatoro',
-                      'color': 'green',
-                      'breed': 'Chaw Chaw',
-                      'weight': '15 kg'
-                      }]
 my_dog_list = []
 
-for description in dogs_desription:
+for description in dogs_description.dogs_list:
     new_dog = Dog(**description)
     my_dog_list.append(new_dog)
 
