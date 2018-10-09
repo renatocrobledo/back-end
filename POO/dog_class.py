@@ -7,6 +7,8 @@ class Dog:
     self.size = size
     self.weight = weight
     print(f"Hello, I'm {name} and I'm alive and my size is {size}!")
+  def __str__(self):
+    return self.name
 
   def bark(self, sound = "Wwwhoof!"):
    # print(self.name + " says: "  + sound)
