@@ -21,8 +21,17 @@ def show():
 def menu():
     print('[i] introducir nuevo registro')
     print('[m] mostrar todos los perrunos')
+    print('[e] emitir ladrido ')
     print('[s] salir')
   
+def make_noise():
+  name = input('¿Como se llama? ')
+  for dog in my_dog_list:
+    if dog.name == name:
+      return dog.bark()
+  print('ups ese perro no existe :(')
+  
+
 while True:
   menu()
   option = input()
@@ -33,3 +42,5 @@ while True:
     add_dog()
   elif option =='m':
     show()
+  elif option =='e':
+    make_noise()
