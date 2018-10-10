@@ -7,6 +7,7 @@ class Dog:
     self.size = size
     self.weight = weight
     print(f"Hello, I'm {name} and I'm alive and my size is {size}!")
+    
   def __str__(self):
     return self.name
 

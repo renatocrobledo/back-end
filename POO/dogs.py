@@ -15,7 +15,8 @@ def add_dog():
   my_dog_list.append(new_dog)
 
 def show():
-  print(my_dog_list)
+  for dog in my_dog_list:
+    print(dog)
 
 def menu():
     print('[i] introducir nuevo registro')
