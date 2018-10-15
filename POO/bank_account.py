@@ -57,12 +57,9 @@ class Account():
     print(f"You have ${self.balance} available in your account")
     print("========================")
   def transfer(self, quantity, receiver_id):      
-      try:
-        receiver_card = accounts_list[receiver_id]
-        if(self.withdraw(quantity)):
-          receiver_card.deposit(quantity)
-      except Exception as error:
-        print('ups something when wrong!', error)
+    receiver_card = accounts_list[receiver_id]
+    if(self.withdraw(quantity)):
+      receiver_card.deposit(quantity)
 
 while True:
   account_option = get_account_option()
