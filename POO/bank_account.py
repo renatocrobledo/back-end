@@ -33,10 +33,9 @@ def show_accounts():
     print(account)
   print("==========================")
 
-
 class Account():
-  def __init__(self, balance = 0):
-    self.balance = int(balance)
+  def __init__(self, balance = 0.0):
+    self.balance = float(balance)
     self.id = len(accounts_list)
   def __str__(self):
     return f"[{self.id}] ${self.balance}"
@@ -56,10 +55,13 @@ class Account():
     print("========================")
     print(f"You have ${self.balance} available in your account")
     print("========================")
-  def transfer(self, quantity, receiver_id):      
-    receiver_card = accounts_list[receiver_id]
-    if(self.withdraw(quantity)):
-      receiver_card.deposit(quantity)
+  def transfer(self, quantity, receiver_id):
+    try:
+      receiver_card = accounts_list[receiver_id]
+      if(self.withdraw(quantity)):
+        receiver_card.deposit(quantity)
+    except Exception as error:
+      print('ups!, something went wrong maybe the id is incorrect!')      
 
 while True:
   account_option = get_account_option()
@@ -69,12 +71,12 @@ while True:
     break
   elif account_option == 'a':
     try:
-      balance = int(input('How much balance ? ') or "0")
+      balance = float(input('How much balance ? ') or "0.0")
       new_account = Account(balance)
       accounts_list.append(new_account)   
       show_accounts()
     except Exception as error:
-      print('Eeehm somethong wrong!', error)
+      print('Eeehm something wrong!', error)
     continue 
   elif account_option == 'v':
     show_accounts()
