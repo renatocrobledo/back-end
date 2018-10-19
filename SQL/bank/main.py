@@ -1,20 +1,16 @@
-'''
-Se busca definir la representación de una cuenta de banco en una Clase... es decir, usando herramientas de Programación orientada a objetos.
+from sqlite3 import connect
+connection = connect("accounts.db")
+cursor = connection.cursor()
+accounts_list = []
 
-La cuenta de banco solo llevará el tracking del balance del usuario: depósitos y retiros (como si se tratara de un cajero )
-No nos preocuparemos por mas de un usuario ni mas de una cuenta. ( por el momento )
+sql_command = """
+                CREATE TABLE IF NOT EXISTS accounts(
+                  id INTEGER PRIMARY KEY,
+                  balance FLOAT
+                );
+                """
 
-Entonces el reto en si es:
-
-Definir un menú que simbolice la cuenta de banco con opciones:
-
-[d] Depositar
-[r] Retirar
-[m] Mostrar Balance
-[s] Salir
-
-Y obviamente hacer que funcione :)
-'''
+cursor.execute(sql_command)
 
 def parse_to_float(str_number):
     try:
@@ -22,7 +18,6 @@ def parse_to_float(str_number):
     except ValueError:
       return print('ups! only numbers are alowed!')
 
-accounts_list = []
 def menu():
   return input(' [d] Deposit \n [r] withdraw \n [s] Show Balance \n [t] Transfer \n [e] Exit \n')
 def get_account_option():
@@ -63,11 +58,33 @@ class Account():
     except Exception as error:
       print('ups!, something went wrong maybe the id is incorrect!')      
 
+def get_accounts_from_disk():
+  sql_command = 'SELECT * FROM accounts;'
+  cursor.execute(sql_command)
+  result = cursor.fetchall()
+
+  for register in result:
+      (id, balance) = register
+      new_account = Account(balance)
+      accounts_list.append(new_account) 
+
+def save_accounts():
+  sql_command = 'DELETE FROM accounts;'
+  cursor.execute(sql_command)
+
+  for account in accounts_list:
+    sql_command = f'INSERT INTO accounts(id, balance) VALUES (NULL, "{account.balance}");'
+    cursor.execute(sql_command)
+    connection.commit()
+
+get_accounts_from_disk()
 while True:
   account_option = get_account_option()
   selected_card = None
   if account_option == 'e':
     print('Bye!')
+    save_accounts()
+    connection.close()
     break
   elif account_option == 'a':
     try:

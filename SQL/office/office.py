@@ -14,7 +14,14 @@ cursor = connection.cursor()
 
 # Lo siguiente Sólo funciona para la librería de sqlite3 y lo que hace es habilitar
 # la funcionalidad de las relaciones (llaves primarias y foraneas)
+# el numero 1 hace referencia a que se van a utilizar llaves foraneas
+# por default está en 0 que significa que esa foncionalidad está apagada
 cursor.execute("PRAGMA foreign_keys = 1")
+
+# Habilita la posibilidad de retornar el nombe de las columnas
+# después de realizar un query, cursor.description contendrá una tupla 
+# con esa info, pero hay que extraerla ya que tiene un formato bastante curioso:
+# https://docs.python.org/3/library/sqlite3.html#sqlite3.Cursor.description
 cursor.execute("PRAGMA table_info(table_name);")
 
 # Lo siguiente es un string que representa una sentencia en SQL 
