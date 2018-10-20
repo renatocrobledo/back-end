@@ -6,7 +6,8 @@ accounts_list = []
 sql_command = """
                 CREATE TABLE IF NOT EXISTS accounts(
                   id INTEGER PRIMARY KEY,
-                  balance FLOAT
+                  balance FLOAT,
+                  account_number VARCHAR(20)
                 );
                 """
 
@@ -19,21 +20,22 @@ def parse_to_float(str_number):
       return print('ups! only numbers are alowed!')
 
 def menu():
-  return input(' [d] Deposit \n [r] withdraw \n [s] Show Balance \n [t] Transfer \n [e] Exit \n')
+  return input(' [d] Deposit \n [r] withdraw \n [s] Show Balance \n [t] Transfer \n [delete] delete_account \n [e] Exit \n')
 def get_account_option():
   return input(' [a] Add account \n [v] View or select account \n [e] Exit \n')
 def show_accounts():
   print("========Account List======")
-  for account in accounts_list:
-    print(account)
+  for position, account in enumerate(accounts_list):
+    print(f"[{position}]", account)
   print("==========================")
 
 class Account():
-  def __init__(self, balance = 0.0):
+  def __init__(self, balance = 0.0, account_number = 'XXX'):
     self.balance = float(balance)
+    self.account_number = account_number
     self.id = len(accounts_list)
   def __str__(self):
-    return f"[{self.id}] ${self.balance}"
+    return f"{self.account_number} -> ${self.balance}"
   def deposit(self, quantity):
     value = parse_to_float(quantity)
     if value:
@@ -56,7 +58,9 @@ class Account():
       if(self.withdraw(quantity)):
         receiver_card.deposit(quantity)
     except Exception as error:
-      print('ups!, something went wrong maybe the id is incorrect!')      
+      print('ups!, something went wrong maybe the id is incorrect!')
+  def remove_this_account(self):
+    accounts_list.remove(self)
 
 def get_accounts_from_disk():
   sql_command = 'SELECT * FROM accounts;'
@@ -64,8 +68,8 @@ def get_accounts_from_disk():
   result = cursor.fetchall()
 
   for register in result:
-      (id, balance) = register
-      new_account = Account(balance)
+      (id, balance, account_number) = register
+      new_account = Account(balance, account_number)
       accounts_list.append(new_account) 
 
 def save_accounts():
@@ -73,7 +77,7 @@ def save_accounts():
   cursor.execute(sql_command)
 
   for account in accounts_list:
-    sql_command = f'INSERT INTO accounts(id, balance) VALUES (NULL, "{account.balance}");'
+    sql_command = f'INSERT INTO accounts(id, balance, account_number) VALUES (NULL, "{account.balance}", "{account.account_number}");'
     cursor.execute(sql_command)
     connection.commit()
 
@@ -88,8 +92,9 @@ while True:
     break
   elif account_option == 'a':
     try:
+      account_number = input('account number? ')
       balance = float(input('How much balance ? ') or "0.0")
-      new_account = Account(balance)
+      new_account = Account(balance, account_number)
       accounts_list.append(new_account)   
       show_accounts()
     except Exception as error:
@@ -113,6 +118,8 @@ while True:
     if option == 'e':
       print('Bye!')
       break
+    elif option == 'delete':
+      selected_card.remove_this_account()
     elif option == 'd':
       selected_card.deposit(input('How much? '))
     elif option == 'r':
