@@ -1,0 +1,1 @@
+print("size: ", len(input("give me the string ")))
