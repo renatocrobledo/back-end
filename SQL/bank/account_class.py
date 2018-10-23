@@ -29,7 +29,7 @@ class Account():
       print('ups!, something went wrong maybe the id is incorrect!')
   def remove_this_account(self):
     accounts_list.remove(self)
-  def parse_to_float(str_number):
+  def parse_to_float(self, str_number):
     try:
       return float(str_number)
     except ValueError:
