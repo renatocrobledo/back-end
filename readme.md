@@ -13,7 +13,7 @@ back-end-resources
 ```python
   def my_function(a,b):
     pass
-  # a y b son los parametros queespera recibir My_function
+  # a y b son los parametros queespera recibir my_function
 ```
 
 **Variable**: el espacio de memoria en donde se almacena un valor y el cual tiene un nombre definido por nosotros 
