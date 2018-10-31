@@ -18,15 +18,15 @@ back-end-resources
 
 **Variable**: el espacio de memoria en donde se almacena un valor y el cual tiene un nombre definido por nosotros 
 
-**Función**: conjunto de instrucciones que realizan una accion en especifco, y pueden tener parámetros de entrada o no.
+**Función**: conjunto de instrucciones que realizan una acción en especifico, y pueden tener parámetros de entrada o no.
 
-**Clase**: Mecanismo por el cual se describen las caracteristicas y el comportamiento de una entidad u objeto, en terminos de atributos y acciones.
+**Clase**: Mecanismo por el cual se describen las características y el comportamiento de una entidad u objeto, en terminos de atributos y acciones.
 
-**Objeto**: es la instncia de una clase.
+**Objeto**: es el resultado de la instancia de una clase.
 
 **Atributos**: adjectivos, características de un objeto
 
 **Métodos**: verbos, acciones o comportamientos.
 
-**Instancia**: es la creacion de un objeto a partir de la clase.
+**Instancia**: se refiere a la creación de un objeto a partir de una clase.
 
