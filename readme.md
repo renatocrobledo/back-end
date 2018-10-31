@@ -8,7 +8,7 @@ back-end-resources
 [Pensar en objetos - presentación](https://docs.google.com/presentation/d/1rmnRj2FuXZt61ijU_Iakv-WAcNKdjHToxbaZa5FOFkU/edit?usp=sharing)
 
 
-**Parametro**: valor que le pasamos a una función, dentro de la funció ese parámetro se vuelve una variable:
+**Parametro**: valor que le pasamos a una función. Dentro de la función, los parámetros se usan como si fieran variables:
 
 ```python
   def my_function(a,b):
