@@ -6,3 +6,27 @@ back-end-resources
 
 
 [Pensar en objetos - presentación](https://docs.google.com/presentation/d/1rmnRj2FuXZt61ijU_Iakv-WAcNKdjHToxbaZa5FOFkU/edit?usp=sharing)
+
+
+**Parametro**: valor que le pasamos a una función, dentro de la funció ese parámetro se vuelve una variable:
+
+```python
+  def my_function(a,b):
+    pass
+  # a y b son los parametros queespera recibir My_function
+```
+
+**Variable**: el espacio de memoria en donde se almacena un valor y el cual tiene un nombre definido por nosotros 
+
+**Función**: conjunto de instrucciones que realizan una accion en especifco, y pueden tener parámetros de entrada o no.
+
+**Clase**: Mecanismo por el cual se describen las caracteristicas y el comportamiento de una entidad u objeto, en terminos de atributos y acciones.
+
+**Objeto**: es la instncia de una clase.
+
+**Atributos**: adjectivos, características de un objeto
+
+**Métodos**: verbos, acciones o comportamientos.
+
+**Instancia**: es la creacion de un objeto a partir de la clase.
+
