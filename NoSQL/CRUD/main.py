@@ -51,13 +51,10 @@ def read_one(name):
   # Actualizar documentos recibiendo el nombre
 def update(name):
   document = Stock.objects(name=name)[0]
-  field_name = input("which field do u want to update: name, price, description?" )
+  field_name = input("Which field do u want to update: name, price, description?" )
   value = input('what\'s the value?' )
-  
   data_to_update = dict()
-
   data_to_update[field_name] = value
-
   document.update(**data_to_update)
   document.reload()
   print(document)
