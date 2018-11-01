@@ -3,12 +3,14 @@
 from mongoengine import connect, Document, StringField, DecimalField
 # Mongo server port: 27017
 
+DATABASE_NAME = 'store'
+
 # db_client recibe el resultado de la ejecucion de connect (que al parecer es una función)
 # y que recibe como argumentos lo necesario para conectarse a la base de datos
 #la base de datos en este caso se llama store
 
 arguments = {
-  'db': 'store',
+  'db': DATABASE_NAME,
   'host': 'localhost',
   'port': 27017
 }
@@ -50,14 +52,37 @@ def read_one(name):
 
   # Actualizar documentos recibiendo el nombre
 def update(name):
-  document = Stock.objects(name=name)[0]
-  field_name = input("Which field do u want to update: name, price, description?" )
-  value = input('what\'s the value?' )
-  data_to_update = dict()
-  data_to_update[field_name] = value
-  document.update(**data_to_update)
-  document.reload()
-  print(document)
+  try:
+    document = Stock.objects(name=name)[0]
+    field_name = input("Which field do u want to update: name, price, description? ")
+    value = input('what\'s the value? ')
+
+    data_to_update = dict()
+    data_to_update[field_name] = value
+    document.update(**data_to_update)
+    document.reload()
+    print(document)
+  except IndexError:
+    print(f'ups! I can\'t find the document with name: {name}')
+
+def delete(name):
+  try:
+    document = Stock.objects(name=name)[0]
+
+    entity_to_delete = input("What do you want to delete, \n[d]escription, \n[w] whole document?, \n[e]mpty database ")
+
+    if entity_to_delete == 'w':
+      document.delete()
+    elif entity_to_delete == 'd':
+      document.update(description=None)
+    elif entity_to_delete == 'e':
+      db_client.drop_database(DATABASE_NAME)
+    else:
+      print('you have just two options: [f] or [d]')
+
+
+  except Exception:
+    print(f'ups! I can\'t find the document with name: {name}')
 
   # Borrar documentos
 
