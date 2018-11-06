@@ -1,6 +1,6 @@
 from random import randint
 
-max_nice_list_lenght = 100
+max_nice_list_lenght = 3
 combinations_found = 0
 nice_list = []
 

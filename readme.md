@@ -4,7 +4,6 @@ back-end-resources
 
 [Built-in functions docs](https://www.programiz.com/python-programming/methods/)
 
-
 [Pensar en objetos - presentación](https://docs.google.com/presentation/d/1rmnRj2FuXZt61ijU_Iakv-WAcNKdjHToxbaZa5FOFkU/edit?usp=sharing)
 
 
@@ -13,7 +12,7 @@ back-end-resources
 ```python
   def my_function(a,b):
     pass
-  # a y b son los parametros queespera recibir my_function
+  # a y b son los parametros queespera recibir My_function
 ```
 
 **Variable**: el espacio de memoria en donde se almacena un valor y el cual tiene un nombre definido por nosotros 
