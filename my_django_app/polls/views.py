@@ -1,5 +1,5 @@
 # from django.http import HttpResponse
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, get_object_or_404
 from django.template import loader
 from .models import Question, Layout
 from django.http import Http404
@@ -10,7 +10,7 @@ def test(request, text):
 def index(request):
   template = Layout.objects.get()
   # get the last five questions order from newer to older
-  latest_question_list = Question.objects.order_by('-pub_date')[:5]
+  latest_question_list = Question.objects.order_by('-pub_date')[:10]
   # template = loader.get_template('polls/index.html')
   context = {
     'latest_question_list': latest_question_list
@@ -19,10 +19,13 @@ def index(request):
   return render(request, f'{template.template_name}/index.html', context)
 
 def detail(request, question_id):
+  '''
   try:
     question = Question.objects.get(pk=question_id)
   except Question.DoesNotExist:
     raise Http404("Question does not exist")
+  '''
+  question = get_object_or_404(Question, pk=question_id)
     #return HttpResponse("te la pelas no existe !!"
   return render(request, 'polls/detail.html', {'question': question or "notFound"})
 
